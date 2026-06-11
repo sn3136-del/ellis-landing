@@ -77,6 +77,37 @@ em { font-style: italic; }
   50% { transform: translate(-110px, 60px) scale(0.92); }
 }
 
+/* ---------- Ink passport ornaments ---------- */
+.passport-bg {
+  position: fixed; z-index: -1; pointer-events: none;
+  color: var(--ink); opacity: 0.09;
+}
+.passport-bg svg { width: 100%; height: auto; }
+.passport-bg--a {
+  width: 350px; right: -64px; top: 13%;
+  animation: pp-float-a 16s ease-in-out infinite;
+}
+.passport-bg--a svg { transform: rotate(10deg); }
+.passport-bg--b {
+  width: 270px; left: -56px; top: 56%;
+  animation: pp-float-b 20s ease-in-out infinite;
+}
+.passport-bg--b svg { transform: rotate(-12deg); }
+@keyframes pp-float-a {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-26px); }
+}
+@keyframes pp-float-b {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(30px); }
+}
+.pp-stroke {
+  stroke-dasharray: 1420; stroke-dashoffset: 1420;
+  animation: pp-draw 2.8s 0.5s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.pp-stroke--inner { animation-delay: 1s; }
+@keyframes pp-draw { to { stroke-dashoffset: 0; } }
+
 /* ---------- Buttons ---------- */
 .btn {
   position: relative; overflow: hidden;
@@ -207,20 +238,61 @@ em { font-style: italic; }
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .hero__media { position: relative; }
-.hero__frame {
+.hero__logoframe {
   position: relative; border-radius: 24px; overflow: hidden;
   border: 1px solid var(--line);
-  box-shadow: 0 40px 90px rgba(10,10,10,0.18);
+  background:
+    radial-gradient(120% 90% at 50% 110%, rgba(10,10,10,0.05), transparent 55%),
+    linear-gradient(180deg, #ffffff, #f4f4f1);
+  aspect-ratio: 4/3.1;
+  display: grid; place-items: center;
+  box-shadow: 0 40px 90px rgba(10,10,10,0.14);
   transition: transform .2s ease-out;
   will-change: transform;
 }
-.hero__frame img {
-  width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/3.1;
-  filter: grayscale(1) contrast(1.06);
-  transform: scale(1.02);
-  transition: filter .8s ease, transform 6s ease;
+.hero__logo-img {
+  width: 56%; max-width: 330px; position: relative; z-index: 1;
+  animation: sway 6.5s ease-in-out infinite;
+  transform-origin: 50% 88%;
+  filter: drop-shadow(0 18px 30px rgba(10,10,10,0.16));
 }
-.hero__frame:hover img { filter: grayscale(0) contrast(1); transform: scale(1.07); }
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg); }
+  30% { transform: rotate(1.4deg); }
+  62% { transform: rotate(-1.2deg); }
+}
+.wind { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.wind__line {
+  stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 80 999;
+  stroke-dashoffset: 80;
+  opacity: 0;
+  animation: gust 4.6s ease-in-out infinite;
+}
+.wind__line--1 { animation-delay: 0s; }
+.wind__line--2 { animation-delay: 1.5s; stroke-width: 1.8; }
+.wind__line--3 { animation-delay: 3s; stroke-width: 1.5; }
+@keyframes gust {
+  0% { stroke-dashoffset: 80; opacity: 0; }
+  12% { opacity: 0.3; }
+  55% { opacity: 0.22; }
+  72% { stroke-dashoffset: -560; opacity: 0; }
+  100% { stroke-dashoffset: -560; opacity: 0; }
+}
+.leaf {
+  position: absolute; z-index: 2; width: 8px; height: 8px;
+  border-radius: 70% 0 70% 0; background: var(--ink); opacity: 0;
+  animation: leaffly 5.4s ease-in infinite;
+}
+.leaf--1 { top: 26%; left: 30%; animation-delay: .6s; }
+.leaf--2 { top: 20%; left: 40%; width: 6px; height: 6px; animation-delay: 2.4s; }
+.leaf--3 { top: 32%; left: 35%; width: 5px; height: 5px; animation-delay: 3.9s; }
+@keyframes leaffly {
+  0% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
+  12% { opacity: 0.5; }
+  70% { opacity: 0.35; }
+  100% { opacity: 0; transform: translate(230px, -50px) rotate(300deg); }
+}
 
 .floatcard {
   position: absolute; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
@@ -262,14 +334,47 @@ em { font-style: italic; }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
 /* ---------- Strip ---------- */
-.strip { border-bottom: 1px solid var(--line); background: var(--bg-soft); }
-.strip .container { padding-top: 56px; padding-bottom: 56px; }
+.strip {
+  border-bottom: 1px solid var(--line);
+  background:
+    radial-gradient(60% 130% at 50% 50%, rgba(10,10,10,0.035), transparent 70%),
+    var(--bg-soft);
+  overflow: hidden;
+}
+.strip .container { padding-top: 84px; padding-bottom: 84px; }
 .strip__lead {
   font-family: var(--font-serif);
-  font-size: clamp(30px, 4.4vw, 54px);
-  color: var(--ink); line-height: 1.1; text-align: center;
+  font-size: clamp(40px, 6.4vw, 92px);
+  color: var(--ink); line-height: 1.05; text-align: center;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0.35em; flex-wrap: wrap;
 }
-.strip__lead em { color: var(--muted-2); }
+.strip__outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+  text-stroke: 1.5px var(--ink);
+  transition: color .5s ease;
+}
+.strip__lead:hover .strip__outline { color: var(--ink); }
+.strip__em { position: relative; font-style: italic; white-space: nowrap; }
+.strip__em::after {
+  content: ""; position: absolute; left: 0; bottom: 0.04em; height: 0.07em; width: 100%;
+  background: var(--ink); border-radius: 99px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 1s 0.45s cubic-bezier(.2,.7,.2,1);
+}
+.strip__lead.is-visible .strip__em::after { transform: scaleX(1); }
+.strip__star {
+  font-size: 0.34em; color: var(--ink); font-family: var(--font-sans);
+  opacity: 0; transform: rotate(-120deg) scale(0.4);
+  transition: opacity .7s .3s ease, transform .9s .3s cubic-bezier(.2,.7,.2,1);
+  animation: starspin 9s linear infinite;
+}
+.strip__lead.is-visible .strip__star { opacity: 1; transform: rotate(0deg) scale(1); }
+@keyframes starspin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
 
 /* ---------- Sections ---------- */
 .section { padding: 108px 0; position: relative; }
@@ -448,8 +553,10 @@ em { font-style: italic; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .floatcard, .orb, .ticker__track { animation: none; }
+  .floatcard, .orb, .ticker__track, .passport-bg, .hero__logo-img, .wind__line, .leaf, .strip__star { animation: none; }
   .hero__title .word > span { transform: none; animation: none; }
   .hero__title em::after { transform: scaleX(1); animation: none; }
+  .pp-stroke { stroke-dashoffset: 0; animation: none; }
+  .wind__line, .leaf { opacity: 0; }
   html { scroll-behavior: auto; }
 }

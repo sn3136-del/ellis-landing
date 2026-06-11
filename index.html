@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ellis | The Shared Workspace That Runs Immigration</title>
-  <meta name="description" content="Ellis is one shared workspace for every immigration matter, from work to travel, fully automated from intake and document extraction to compliance and filing." />
+  <title>Ellis | The Shared Workspace That Automates Immigration</title>
+  <meta name="description" content="Ellis is a shared workspace that automates the entirety of the immigration process." />
   <meta name="theme-color" content="#ffffff" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Ellis | The Shared Workspace That Runs Immigration" />
-  <meta property="og:description" content="One shared workspace for every immigration matter, from work to travel, fully automated." />
+  <meta property="og:title" content="Ellis | The Shared Workspace That Automates Immigration" />
+  <meta property="og:description" content="Ellis is a shared workspace that automates the entirety of the immigration process." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/hero.png" />
+  <meta property="og:image" content="assets/ellis-logo.png" />
 
   <link rel="icon" type="image/png" href="assets/ellis-logo.png" />
 
@@ -25,6 +25,30 @@
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="orb orb--a" aria-hidden="true"></div>
   <div class="orb orb--b" aria-hidden="true"></div>
+
+  <!-- Ink passport background ornaments -->
+  <div class="passport-bg passport-bg--a" aria-hidden="true">
+    <svg viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect class="pp-stroke" x="8" y="8" width="284" height="404" rx="26" stroke="currentColor" stroke-width="3"/>
+      <rect class="pp-stroke pp-stroke--inner" x="26" y="26" width="248" height="368" rx="16" stroke="currentColor" stroke-width="1.5"/>
+      <text x="150" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="21" font-weight="600" letter-spacing="9" fill="currentColor">PASSPORT</text>
+      <image href="assets/ellis-logo.png" x="86" y="124" width="128" height="128"/>
+      <line class="pp-stroke" x1="72" y1="300" x2="228" y2="300" stroke="currentColor" stroke-width="2"/>
+      <line class="pp-stroke" x1="92" y1="322" x2="208" y2="322" stroke="currentColor" stroke-width="2"/>
+      <text x="150" y="372" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" letter-spacing="4" fill="currentColor">E L L I S</text>
+    </svg>
+  </div>
+  <div class="passport-bg passport-bg--b" aria-hidden="true">
+    <svg viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect class="pp-stroke" x="8" y="8" width="284" height="404" rx="26" stroke="currentColor" stroke-width="3"/>
+      <rect class="pp-stroke pp-stroke--inner" x="26" y="26" width="248" height="368" rx="16" stroke="currentColor" stroke-width="1.5"/>
+      <text x="150" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="21" font-weight="600" letter-spacing="9" fill="currentColor">PASSPORT</text>
+      <image href="assets/ellis-logo.png" x="86" y="124" width="128" height="128"/>
+      <line class="pp-stroke" x1="72" y1="300" x2="228" y2="300" stroke="currentColor" stroke-width="2"/>
+      <line class="pp-stroke" x1="92" y1="322" x2="208" y2="322" stroke="currentColor" stroke-width="2"/>
+      <text x="150" y="372" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" letter-spacing="4" fill="currentColor">E L L I S</text>
+    </svg>
+  </div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
@@ -76,9 +100,9 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <h1 class="hero__title" id="heroTitle">The shared workspace that runs <em>immigration</em>.</h1>
+          <h1 class="hero__title" id="heroTitle">The shared workspace that automates <em>immigration</em></h1>
           <p class="hero__sub reveal" data-delay="2">
-            Ellis is one shared workspace for every immigration matter, from work to travel. Every workflow lives in one place and runs fully automated, from intake and document extraction to compliance and filing.
+            Ellis is a shared workspace that automates the entirety of the immigration process.
           </p>
           <div class="hero__actions reveal" data-delay="3">
             <a class="btn btn--primary btn--lg js-demo js-magnet" href="#" rel="noopener"><span>Request a demo</span></a>
@@ -87,8 +111,16 @@
         </div>
 
         <div class="hero__media reveal" data-delay="2">
-          <div class="hero__frame" id="tilt">
-            <img src="assets/hero.png" alt="Professionals walking through a modern international airport" loading="eager" />
+          <div class="hero__logoframe" id="tilt">
+            <svg class="wind" viewBox="0 0 400 310" fill="none" preserveAspectRatio="none" aria-hidden="true">
+              <path class="wind__line wind__line--1" d="M-20 64 C 70 36, 150 88, 240 58 S 370 46, 430 62"/>
+              <path class="wind__line wind__line--2" d="M-20 100 C 90 76, 170 122, 270 92 S 390 86, 430 96"/>
+              <path class="wind__line wind__line--3" d="M-20 40 C 60 22, 160 54, 250 34 S 380 26, 430 40"/>
+            </svg>
+            <img class="hero__logo-img" src="assets/ellis-logo.png" alt="Ellis logo, a letter E shaped like an island with a palm tree" />
+            <span class="leaf leaf--1"></span>
+            <span class="leaf leaf--2"></span>
+            <span class="leaf leaf--3"></span>
           </div>
           <div class="floatcard floatcard--a">
             <div class="floatcard__label">Renewal due</div>
@@ -123,7 +155,12 @@
     <!-- STRIP -->
     <section class="strip">
       <div class="container">
-        <p class="strip__lead reveal">One workspace. <em>Every case.</em></p>
+        <p class="strip__lead reveal">
+          <span class="strip__star">&#10022;</span>
+          <span class="strip__outline">One workspace.</span>
+          <em class="strip__em">Every case.</em>
+          <span class="strip__star strip__star--right">&#10022;</span>
+        </p>
       </div>
     </section>
 
@@ -247,7 +284,7 @@
         </div>
 
         <div class="quote reveal">
-          <p>&ldquo;Ellis catches the filing risk in a chat message before it ever becomes a problem on a petition.&rdquo;</p>
+          <p>Ellis catches the filing risk in a chat message before it ever becomes a problem on a petition.</p>
         </div>
       </div>
     </section>
