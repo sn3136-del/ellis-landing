@@ -246,7 +246,6 @@ em { font-style: italic; }
 .logo-anim__base,
 .logo-anim__palm {
   position: absolute; inset: 0; width: 100%; height: 100%;
-  mix-blend-mode: multiply;
 }
 /* Bottom layer: the island E, static. Top layer: palm tree only, swaying. */
 .logo-anim__base { clip-path: inset(21.5% 0 0 0); }
