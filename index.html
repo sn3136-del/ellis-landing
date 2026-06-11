@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ellis | The AI-Native Operating Layer for Immigration</title>
-  <meta name="description" content="Ellis is the AI agent that runs immigration operations for companies, law firms, and universities. From case files to compliance, Ellis automates the work between intake and filing." />
+  <title>Ellis | The Shared Workspace That Runs Immigration</title>
+  <meta name="description" content="Ellis is a shared workspace where companies, law firms, and universities coordinate every immigration workflow, with AI that automates the entire process from intake to filing." />
   <meta name="theme-color" content="#06070d" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Ellis | The AI-Native Operating Layer for Immigration" />
-  <meta property="og:description" content="The AI agent that runs immigration operations for companies, law firms, and universities." />
+  <meta property="og:title" content="Ellis | The Shared Workspace That Runs Immigration" />
+  <meta property="og:description" content="One workspace to coordinate every immigration workflow. AI that automates everything in between." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/hero.png" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230c87eb'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' fill='white' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" type="image/png" href="assets/ellis-logo.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,34 +21,54 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-glow" aria-hidden="true"></div>
+  <div class="orb orb--a" aria-hidden="true"></div>
+  <div class="orb orb--b" aria-hidden="true"></div>
 
   <!-- NAV -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#top" class="brand" aria-label="Ellis home">
-        <span class="brand__mark">E</span>
+        <span class="brand__logo"><img src="assets/ellis-logo.png" alt="Ellis logo" /></span>
         <span class="brand__word">ELLIS</span>
       </a>
-      <nav class="nav__links" aria-label="Primary">
-        <a href="#capabilities">Capabilities</a>
-        <a href="#intelligence">Intelligence</a>
-        <a href="#mission">Mission</a>
-      </nav>
-      <div class="nav__cta">
-        <a href="#demo" class="btn btn--ghost nav__hide-sm">Sign in</a>
-        <a class="btn btn--primary js-demo" href="#" rel="noopener">Request a demo</a>
+
+      <a class="ycbadge" href="https://www.ycombinator.com" target="_blank" rel="noopener" aria-label="Backed by Y Combinator">
+        <span>Backed by</span>
+        <svg class="ycbadge__mark" viewBox="0 0 24 24" aria-hidden="true">
+          <rect width="24" height="24" rx="4.5" fill="#FF6533"/>
+          <path d="M11.1 13.42 7.5 6.7h2.04L11.66 11c.03.08.07.16.11.25l.08.18.05.12.05.12c.04-.1.09-.2.13-.31l.13-.3 2.16-4.36h1.9l-3.63 6.86v4.34h-1.54v-4.48z" fill="#fff"/>
+        </svg>
+        <strong>Y Combinator</strong>
+      </a>
+
+      <div class="nav__right">
+        <nav class="nav__links" aria-label="Primary">
+          <a href="#capabilities">Capabilities</a>
+          <a href="#coverage">Coverage</a>
+          <a href="#platform">Platform</a>
+        </nav>
+        <a class="btn btn--primary js-demo" href="#" rel="noopener"><span>Request a demo</span></a>
+        <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
     </div>
     <div class="nav__mobile" id="navMobile">
+      <a class="ycbadge ycbadge--mobile" href="https://www.ycombinator.com" target="_blank" rel="noopener">
+        <span>Backed by</span>
+        <svg class="ycbadge__mark" viewBox="0 0 24 24" aria-hidden="true">
+          <rect width="24" height="24" rx="4.5" fill="#FF6533"/>
+          <path d="M11.1 13.42 7.5 6.7h2.04L11.66 11c.03.08.07.16.11.25l.08.18.05.12.05.12c.04-.1.09-.2.13-.31l.13-.3 2.16-4.36h1.9l-3.63 6.86v4.34h-1.54v-4.48z" fill="#fff"/>
+        </svg>
+        <strong>Y Combinator</strong>
+      </a>
       <a href="#capabilities">Capabilities</a>
-      <a href="#intelligence">Intelligence</a>
-      <a href="#mission">Mission</a>
-      <a class="btn btn--primary js-demo" href="#" rel="noopener">Request a demo</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#platform">Platform</a>
+      <a class="btn btn--primary js-demo" href="#" rel="noopener"><span>Request a demo</span></a>
     </div>
   </header>
 
@@ -56,31 +76,30 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container hero__inner">
-        <div class="hero__copy reveal">
-          <span class="eyebrow"><span class="eyebrow__dot"></span> Institutional Precision &bull; AI-Native Immigration Ops</span>
-          <h1 class="hero__title">Building the AI-Native operating layer for <span class="grad">immigration</span>.</h1>
-          <p class="hero__sub">
-            Ellis is the AI agent that runs immigration operations for companies, law firms, and universities. It automates the workflows that move a case from intake to filing, so nothing slips between deadlines.
+        <div class="hero__copy">
+          <h1 class="hero__title reveal">The shared workspace that runs <span class="grad">immigration</span>.</h1>
+          <p class="hero__sub reveal" data-delay="1">
+            Ellis brings companies, law firms, and universities into one live workspace to coordinate every immigration workflow. Its AI automates everything in between, from intake and document extraction to compliance and filing.
           </p>
-          <div class="hero__actions">
-            <a class="btn btn--primary btn--lg js-demo" href="#" rel="noopener">Request a demo</a>
-            <a class="btn btn--ghost btn--lg" href="#capabilities">See capabilities</a>
+          <div class="hero__actions reveal" data-delay="2">
+            <a class="btn btn--primary btn--lg js-demo" href="#" rel="noopener"><span>Request a demo</span></a>
+            <a class="btn btn--ghost btn--lg" href="#capabilities">Explore the platform</a>
           </div>
-          <div class="hero__trust">
-            <span>Built for</span>
+          <div class="hero__trust reveal" data-delay="3">
+            <span>Trusted by teams at</span>
             <strong>Companies</strong><span class="dot">/</span><strong>Law firms</strong><span class="dot">/</span><strong>Universities</strong>
           </div>
         </div>
 
-        <div class="hero__media reveal">
-          <div class="hero__frame">
-            <img src="assets/hero.png" alt="Diverse professionals moving through a modern airport terminal" loading="eager" />
+        <div class="hero__media reveal" data-delay="2">
+          <div class="hero__frame" id="tilt">
+            <img src="assets/hero.png" alt="Professionals walking through a modern international airport" loading="eager" />
             <div class="hero__frame-glow"></div>
           </div>
           <div class="floatcard floatcard--a">
             <div class="floatcard__label">Renewal due</div>
             <div class="floatcard__value">47 days</div>
-            <div class="floatcard__meta">H-1B &bull; flagged early</div>
+            <div class="floatcard__meta">H-1B, flagged early</div>
           </div>
           <div class="floatcard floatcard--b">
             <div class="floatcard__pulse"></div>
@@ -89,18 +108,32 @@
               <div class="floatcard__value floatcard__value--sm">Worksite mismatch caught</div>
             </div>
           </div>
+          <div class="floatcard floatcard--c">
+            <div class="floatcard__avatar">HR</div>
+            <div class="floatcard__avatar floatcard__avatar--2">JL</div>
+            <div class="floatcard__avatar floatcard__avatar--3">+4</div>
+            <div class="floatcard__label floatcard__label--inline">working this case</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- MARQUEE / TRUST -->
+    <!-- TICKER -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>H-1B</span><i>&#10022;</i><span>O-1</span><i>&#10022;</i><span>L-1</span><i>&#10022;</i><span>TN</span><i>&#10022;</i><span>F-1</span><i>&#10022;</i><span>J-1</span><i>&#10022;</i><span>B-1 / B-2</span><i>&#10022;</i><span>Green Card</span><i>&#10022;</i><span>OPT / CPT</span><i>&#10022;</i><span>E-2</span><i>&#10022;</i><span>EB-1</span><i>&#10022;</i><span>ESTA</span><i>&#10022;</i>
+        <span>H-1B</span><i>&#10022;</i><span>O-1</span><i>&#10022;</i><span>L-1</span><i>&#10022;</i><span>TN</span><i>&#10022;</i><span>F-1</span><i>&#10022;</i><span>J-1</span><i>&#10022;</i><span>B-1 / B-2</span><i>&#10022;</i><span>Green Card</span><i>&#10022;</i><span>OPT / CPT</span><i>&#10022;</i><span>E-2</span><i>&#10022;</i><span>EB-1</span><i>&#10022;</i><span>ESTA</span><i>&#10022;</i>
+      </div>
+    </div>
+
+    <!-- STRIP -->
     <section class="strip">
       <div class="container strip__inner">
-        <p class="strip__lead">The operating system for immigration in the United States.</p>
+        <p class="strip__lead reveal">One workspace. Every case. Zero surprises.</p>
         <div class="strip__stats">
-          <div><span class="strip__num">24/7</span><span class="strip__cap">Compliance monitoring</span></div>
-          <div><span class="strip__num">1-click</span><span class="strip__cap">Counsel-ready bundles</span></div>
-          <div><span class="strip__num">100%</span><span class="strip__cap">Answers cite the source</span></div>
+          <div class="reveal"><span class="strip__num"><span class="count" data-count="24">0</span>/7</span><span class="strip__cap">Compliance monitoring</span></div>
+          <div class="reveal" data-delay="1"><span class="strip__num"><span class="count" data-count="1">0</span>-click</span><span class="strip__cap">Counsel-ready bundles</span></div>
+          <div class="reveal" data-delay="2"><span class="strip__num"><span class="count" data-count="100">0</span>%</span><span class="strip__cap">Answers cite the source</span></div>
         </div>
       </div>
     </section>
@@ -110,44 +143,97 @@
       <div class="container">
         <div class="section__head reveal">
           <span class="kicker">Capabilities</span>
-          <h2 class="section__title">We automate the operating layer of immigration operations.</h2>
-          <p class="section__lead">Ellis combines document intelligence with case orchestration to keep every petition compliant, on time, and audit-ready.</p>
+          <h2 class="section__title">Coordinate everything. Automate everything.</h2>
+          <p class="section__lead">Ellis is where HR, counsel, and employees work from the same live case file, and where the busywork does itself.</p>
         </div>
 
         <div class="cards-3">
           <article class="card reveal">
             <div class="card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h12"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.5 5.5-4.5S13.9 16 14.5 19"/><circle cx="17" cy="9.5" r="2.5"/><path d="M15.5 14.6c2.6-.3 4.6 1 5 4.4"/></svg>
             </div>
-            <h3>Automate the caseload</h3>
-            <p>Ellis ingests passports, I-94s, visas, and LCAs, extracts the fields that matter, and assigns tasks to the employee, HR, and counsel automatically.</p>
+            <h3>One shared workspace</h3>
+            <p>Every stakeholder sees the same live case: documents, extracted fields, tasks, owners, and status. No more chasing updates across email, Slack, and portals.</p>
             <span class="card__link js-demo">Request a demo &rarr;</span>
           </article>
-          <article class="card reveal">
+          <article class="card reveal" data-delay="1">
             <div class="card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 3 5 13h5l-1 8 8-10h-5l1-8z"/></svg>
             </div>
-            <h3>Embed with counsel</h3>
-            <p>Certified translation and evidence assembly happen inside Ellis, so counsel receives USCIS-ready bundles in one place and approves without the back and forth.</p>
+            <h3>End-to-end automation</h3>
+            <p>Ellis ingests passports, I-94s, visas, and LCAs, extracts every field, assigns tasks automatically, and assembles counsel-ready filing bundles in one click.</p>
             <span class="card__link js-demo">Request a demo &rarr;</span>
           </article>
-          <article class="card reveal">
+          <article class="card reveal" data-delay="2">
             <div class="card__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
             </div>
-            <h3>Execute beyond paperwork</h3>
-            <p>From filing windows to travel risk, Ellis turns scattered signals into the next action with an owner and a due date, before anything becomes a problem.</p>
+            <h3>Always ahead of deadlines</h3>
+            <p>Filing windows, expirations, and policy changes are tracked continuously. Ellis flags risk early and turns it into a next action with an owner and a due date.</p>
             <span class="card__link js-demo">Request a demo &rarr;</span>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- INTELLIGENCE GRID -->
-    <section class="section section--alt" id="intelligence">
+    <!-- COVERAGE -->
+    <section class="section section--alt" id="coverage">
       <div class="container">
         <div class="section__head reveal">
-          <span class="kicker">Institutional Intelligence</span>
+          <span class="kicker">Coverage</span>
+          <h2 class="section__title">Every visa journey, handled.</h2>
+          <p class="section__lead">From a first tourist trip to a long-term career or degree in the United States, Ellis processes the full spectrum.</p>
+        </div>
+
+        <div class="cards-3 cards-3--coverage">
+          <article class="covcard reveal">
+            <div class="covcard__head">
+              <span class="covcard__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="check-path" d="M4.5 12.5l5 5L19.5 7"/></svg></span>
+              <h3>Tourist visas, worldwide</h3>
+            </div>
+            <p>Visitor processing for any destination, handled end to end.</p>
+            <ul class="ticks">
+              <li>B-1 / B-2 visitor visas</li>
+              <li>ESTA and visa waiver guidance</li>
+              <li>Travel risk checks before every trip</li>
+              <li>Re-entry readiness and documentation</li>
+            </ul>
+          </article>
+          <article class="covcard reveal" data-delay="1">
+            <div class="covcard__head">
+              <span class="covcard__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="check-path" d="M4.5 12.5l5 5L19.5 7"/></svg></span>
+              <h3>Work visas</h3>
+            </div>
+            <p>Employment-based cases coordinated across HR and counsel.</p>
+            <ul class="ticks">
+              <li>H-1B, O-1, L-1, TN, E-2</li>
+              <li>LCA and wage compliance</li>
+              <li>Extensions, amendments, transfers</li>
+              <li>Green card and EB pathways</li>
+            </ul>
+          </article>
+          <article class="covcard reveal" data-delay="2">
+            <div class="covcard__head">
+              <span class="covcard__check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path class="check-path" d="M4.5 12.5l5 5L19.5 7"/></svg></span>
+              <h3>Student visas</h3>
+            </div>
+            <p>University and student workflows kept on schedule.</p>
+            <ul class="ticks">
+              <li>F-1 and J-1 processing</li>
+              <li>OPT, CPT, and STEM extensions</li>
+              <li>SEVIS status tracking</li>
+              <li>Work authorization timelines</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLATFORM -->
+    <section class="section" id="platform">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="kicker">Platform Intelligence</span>
           <h2 class="section__title">One agent across the entire immigration lifecycle.</h2>
           <p class="section__lead">Explore the intelligence layer Ellis runs on every case, every day.</p>
         </div>
@@ -157,23 +243,23 @@
             <h3>Immigration health dashboard</h3>
             <p>See workforce status at a glance: who is on track, who needs attention, and who is at risk, sorted by urgency.</p>
           </article>
-          <article class="tile reveal">
+          <article class="tile reveal" data-delay="1">
             <h3>Compliance monitoring</h3>
             <p>Worksite versus LCA, wage parity, deadlines, and I-9 checks run continuously and flag filing risk before anyone notices.</p>
           </article>
-          <article class="tile reveal">
-            <h3>Case file Q&amp;A</h3>
-            <p>Ask anything about a case. Ellis answers only from documents in the file and cites the LCA, the I-94, or the source thread.</p>
+          <article class="tile reveal" data-delay="2">
+            <h3>Answers to any question</h3>
+            <p>Ask Ellis anything, from case status to policy nuance to what happens next. It responds in seconds with clear, professional, well-sourced answers your whole team can rely on.</p>
           </article>
           <article class="tile reveal">
             <h3>Travel risk</h3>
             <p>Before a trip, Ellis weighs advance parole, passport validity, and re-entry exposure, then recommends go or hold.</p>
           </article>
-          <article class="tile reveal">
+          <article class="tile reveal" data-delay="1">
             <h3>Filing window forecasting</h3>
             <p>Ellis projects the right window for each petition and counts down the days so nothing is filed late.</p>
           </article>
-          <article class="tile reveal">
+          <article class="tile reveal" data-delay="2">
             <h3>Document extraction</h3>
             <p>Structured fields pulled from every upload: visa class, worksite, salary, dates, and the evidence behind each one.</p>
           </article>
@@ -185,18 +271,23 @@
       </div>
     </section>
 
-    <!-- MISSION -->
-    <section class="section mission" id="mission">
-      <div class="container mission__inner">
-        <div class="mission__media reveal">
-          <img src="assets/mission.png" alt="A diverse group of people looking toward the horizon near the Statue of Liberty" loading="lazy" />
+    <!-- WORKSPACE -->
+    <section class="section section--alt workspace" id="workspace">
+      <div class="container workspace__inner">
+        <div class="workspace__media reveal">
+          <img src="assets/workspace.png" alt="HR, counsel, and operations collaborating around a case dashboard" loading="lazy" />
         </div>
-        <div class="mission__copy reveal">
-          <span class="kicker">Why Ellis</span>
-          <h2 class="section__title">Built by someone who lived it.</h2>
-          <p>Immigration paperwork decides where people get to build their lives, yet the work behind it is still manual, fragmented, and easy to get wrong. Ellis exists to make that process precise, transparent, and fast for the teams responsible for it.</p>
-          <p>Every answer Ellis gives is grounded in the documents on file and cites its source, so legal and HR teams can trust the output and move with confidence.</p>
-          <a class="btn btn--primary btn--lg js-demo" href="#" rel="noopener">Request a demo</a>
+        <div class="workspace__copy reveal" data-delay="1">
+          <span class="kicker">The Workspace</span>
+          <h2 class="section__title">Everyone on the same page. Literally.</h2>
+          <p>HR, counsel, and employees collaborate inside one live case file. Statuses update in real time, tasks route to the right owner, and certified translations and evidence land exactly where counsel needs them.</p>
+          <ul class="ticks ticks--light">
+            <li>Shared timelines and case statuses</li>
+            <li>Automatic task routing to HR, counsel, and employees</li>
+            <li>USCIS-ready evidence assembled in one place</li>
+            <li>Every answer grounded in documents and cited</li>
+          </ul>
+          <a class="btn btn--primary btn--lg js-demo" href="#" rel="noopener"><span>Request a demo</span></a>
         </div>
       </div>
     </section>
@@ -209,8 +300,8 @@
         </div>
         <div class="cta__copy">
           <h2>Run immigration like an operating system.</h2>
-          <p>See how Ellis handles a real case end to end. Pick a time and we will walk you through it.</p>
-          <a class="btn btn--primary btn--xl js-demo" href="#" rel="noopener">Request a demo</a>
+          <p>See how Ellis coordinates and automates a real case end to end. Pick a time and we will walk you through it.</p>
+          <a class="btn btn--primary btn--xl js-demo" href="#" rel="noopener"><span>Request a demo</span></a>
           <p class="cta__note">A short call. No software setup required.</p>
         </div>
       </div>
@@ -221,15 +312,15 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <span class="brand"><span class="brand__mark">E</span><span class="brand__word">ELLIS</span></span>
-        <p>The AI-Native operating layer for immigration.</p>
+        <span class="brand"><span class="brand__logo"><img src="assets/ellis-logo.png" alt="Ellis logo" /></span><span class="brand__word">ELLIS</span></span>
+        <p>The shared workspace that coordinates and automates the entire immigration process.</p>
       </div>
       <div class="footer__cols">
         <div>
           <h4>Product</h4>
           <a href="#capabilities">Capabilities</a>
-          <a href="#intelligence">Intelligence</a>
-          <a href="#mission">Mission</a>
+          <a href="#coverage">Coverage</a>
+          <a href="#platform">Platform</a>
         </div>
         <div>
           <h4>Company</h4>
