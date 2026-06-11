@@ -13,7 +13,10 @@ document.querySelectorAll(".js-demo").forEach((el) => {
   if (el.tagName === "A") el.setAttribute("href", DEMO_CALENDAR_URL);
 });
 
-// Sticky nav shadow + scroll progress bar
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+// Sticky nav border + scroll progress bar
 const nav = document.getElementById("nav");
 const progress = document.getElementById("progress");
 const onScroll = () => {
@@ -38,8 +41,38 @@ navMobile.querySelectorAll("a").forEach((a) =>
   })
 );
 
+// Hero headline: word-by-word rise on load
+const heroTitle = document.getElementById("heroTitle");
+if (heroTitle && !reduceMotion) {
+  const splitWords = (node) => {
+    [...node.childNodes].forEach((child) => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach((part) => {
+          if (/^\s+$/.test(part) || part === "") {
+            frag.appendChild(document.createTextNode(part));
+          } else {
+            const word = document.createElement("span");
+            word.className = "word";
+            const inner = document.createElement("span");
+            inner.textContent = part;
+            word.appendChild(inner);
+            frag.appendChild(word);
+          }
+        });
+        node.replaceChild(frag, child);
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        splitWords(child);
+      }
+    });
+  };
+  splitWords(heroTitle);
+  heroTitle.querySelectorAll(".word > span").forEach((span, i) => {
+    span.style.setProperty("--wd", `${0.08 + i * 0.07}s`);
+  });
+}
+
 // Reveal on scroll
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -53,45 +86,33 @@ const observer = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-// Count-up stats when they enter the viewport
-const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-const countObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      countObserver.unobserve(entry.target);
-      const el = entry.target;
-      const target = parseInt(el.dataset.count, 10);
-      if (reduceMotion) {
-        el.textContent = target;
-        return;
-      }
-      const duration = 1200;
-      const start = performance.now();
-      const tick = (now) => {
-        const p = Math.min((now - start) / duration, 1);
-        el.textContent = Math.round(easeOut(p) * target);
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    });
-  },
-  { threshold: 0.6 }
-);
-document.querySelectorAll(".count").forEach((el) => countObserver.observe(el));
-
 // Subtle 3D tilt on the hero image
 const tilt = document.getElementById("tilt");
-if (tilt && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
-  const damp = 28;
+if (tilt && !reduceMotion && finePointer) {
+  const damp = 11;
   tilt.addEventListener("mousemove", (e) => {
     const r = tilt.getBoundingClientRect();
     const x = (e.clientX - r.left) / r.width - 0.5;
     const y = (e.clientY - r.top) / r.height - 0.5;
-    tilt.style.transform = `perspective(900px) rotateY(${x * damp * 0.4}deg) rotateX(${-y * damp * 0.4}deg)`;
+    tilt.style.transform = `perspective(900px) rotateY(${x * damp}deg) rotateX(${-y * damp}deg)`;
   });
   tilt.addEventListener("mouseleave", () => {
     tilt.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
+  });
+}
+
+// Magnetic buttons: nudge toward the cursor
+if (!reduceMotion && finePointer) {
+  document.querySelectorAll(".js-magnet").forEach((btn) => {
+    btn.addEventListener("mousemove", (e) => {
+      const r = btn.getBoundingClientRect();
+      const x = e.clientX - r.left - r.width / 2;
+      const y = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${x * 0.18}px, ${y * 0.3}px)`;
+    });
+    btn.addEventListener("mouseleave", () => {
+      btn.style.transform = "";
+    });
   });
 }
 
