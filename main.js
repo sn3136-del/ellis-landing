@@ -43,7 +43,13 @@ navMobile.querySelectorAll("a").forEach((a) =>
 
 // Hero headline: word-by-word rise on load
 const heroTitle = document.getElementById("heroTitle");
-if (heroTitle && !reduceMotion) {
+try {
+  splitHeroTitle();
+} catch (err) {
+  /* If splitting fails, the headline simply renders without the rise animation. */
+}
+function splitHeroTitle() {
+  if (!heroTitle || reduceMotion) return;
   const splitWords = (node) => {
     [...node.childNodes].forEach((child) => {
       if (child.nodeType === Node.TEXT_NODE) {
@@ -72,19 +78,30 @@ if (heroTitle && !reduceMotion) {
   });
 }
 
-// Reveal on scroll
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.12 }
-);
-document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+// Reveal on scroll, with a fallback that shows everything if the
+// observer is unavailable or anything goes wrong (older mobile browsers).
+const revealAll = () =>
+  document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+try {
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+  } else {
+    revealAll();
+  }
+} catch (err) {
+  revealAll();
+}
 
 // Magnetic buttons: nudge toward the cursor
 if (!reduceMotion && finePointer) {

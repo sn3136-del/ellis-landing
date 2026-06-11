@@ -52,6 +52,7 @@ em { font-style: italic; }
     linear-gradient(to right, rgba(10,10,10,0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(10,10,10,0.035) 1px, transparent 1px);
   background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 100%);
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 35%, transparent 100%);
 }
 .orb {
@@ -143,6 +144,7 @@ em { font-style: italic; }
 /* ---------- Nav ---------- */
 .nav {
   position: sticky; top: 0; z-index: 50;
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   background: rgba(255,255,255,0.7);
   border-bottom: 1px solid transparent;
@@ -180,7 +182,6 @@ em { font-style: italic; }
 .ycbadge strong { color: var(--ink); font-weight: 600; }
 .ycbadge__mark { width: 19px; height: 19px; border-radius: 4px; flex-shrink: 0; }
 .ycbadge:hover { border-color: rgba(255,101,51,0.6); box-shadow: 0 6px 18px rgba(255,101,51,0.16); transform: translateY(-1px); }
-.ycbadge--mobile { display: none; }
 
 .nav__right { display: flex; align-items: center; gap: 22px; justify-self: end; }
 .nav__links { display: flex; gap: 26px; }
@@ -201,7 +202,7 @@ em { font-style: italic; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 110px 0 96px; position: relative; }
-.hero__inner { display: flex; justify-content: center; }
+.hero__inner { display: flex; justify-content: center; position: relative; z-index: 1; }
 .hero__copy { max-width: 860px; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .hero__title {
   font-family: var(--font-serif); font-weight: 400;
@@ -229,10 +230,10 @@ em { font-style: italic; }
 .hero__sub { color: var(--muted); font-size: 19px; max-width: 560px; margin: 0 auto 36px; }
 .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
 
-/* ---------- Animated logo, background right ---------- */
+/* ---------- Animated logo, anchored to the hero ---------- */
 .logo-anim {
-  position: fixed; z-index: -1; pointer-events: none;
-  right: 1.5vw; top: 15%;
+  position: absolute; z-index: 0; pointer-events: none;
+  right: 1.5vw; top: 6%;
   width: min(430px, 32vw);
   opacity: 0.9;
   animation: logo-drift 18s ease-in-out infinite;
@@ -492,18 +493,22 @@ em { font-style: italic; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1060px) {
-  .ycbadge { display: none; }
-  .ycbadge--mobile { display: inline-flex; margin-bottom: 8px; align-self: flex-start; }
   .nav__inner { display: flex; justify-content: space-between; }
+  .nav__links { display: none; }
 }
 @media (max-width: 1024px) {
-  .logo-anim { display: none; }
+  /* On smaller screens the animated logo flows below the hero text instead of floating beside it */
+  .hero { padding: 72px 0 64px; }
+  .logo-anim {
+    position: static; width: min(60vw, 300px);
+    margin: 44px auto 0; opacity: 1;
+  }
 }
 @media (max-width: 940px) {
   .workspace__inner { grid-template-columns: 1fr; gap: 36px; }
   .cta__inner { grid-template-columns: 1fr; }
-  .cta__media { display: none; }
-  .nav__links { display: none; }
+  .cta__media img { min-height: 0; height: 220px; }
+  .cta__media::after { background: linear-gradient(180deg, transparent 25%, rgba(10,10,10,0.95)); }
   .nav__right .btn { display: none; }
   .nav__burger { display: flex; }
   .nav__mobile.is-open { display: flex; }
@@ -516,6 +521,12 @@ em { font-style: italic; }
   .cta__copy { padding: 44px 30px; }
   .strip__text { white-space: normal; }
   .strip__rule { display: none; }
+}
+@media (max-width: 520px) {
+  .ycbadge { padding: 6px 10px; font-size: 12.5px; gap: 6px; }
+  .ycbadge > span { display: none; }
+  .brand__word { display: none; }
+  .passport-bg--b { width: 200px; left: -70px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

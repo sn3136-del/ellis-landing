@@ -26,22 +26,6 @@
   <div class="orb orb--a" aria-hidden="true"></div>
   <div class="orb orb--b" aria-hidden="true"></div>
 
-  <!-- Animated Ellis logo, background right -->
-  <div class="logo-anim" aria-hidden="true">
-    <div class="logo-anim__stack">
-      <img class="logo-anim__base" src="assets/ellis-logo.png" alt="" />
-      <img class="logo-anim__palm" src="assets/ellis-logo.png" alt="" />
-      <svg class="wind" viewBox="0 0 400 160" fill="none" preserveAspectRatio="none">
-        <path class="wind__line wind__line--1" d="M-20 52 C 70 30, 150 72, 240 46 S 370 38, 430 52"/>
-        <path class="wind__line wind__line--2" d="M-20 92 C 90 68, 170 110, 270 82 S 390 76, 430 86"/>
-        <path class="wind__line wind__line--3" d="M-20 26 C 60 10, 160 42, 250 22 S 380 16, 430 26"/>
-      </svg>
-      <span class="leaf leaf--1"></span>
-      <span class="leaf leaf--2"></span>
-      <span class="leaf leaf--3"></span>
-    </div>
-  </div>
-
   <!-- Ink passport background ornament -->
   <div class="passport-bg passport-bg--b" aria-hidden="true">
     <svg viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,14 +69,6 @@
       </div>
     </div>
     <div class="nav__mobile" id="navMobile">
-      <a class="ycbadge ycbadge--mobile" href="https://www.ycombinator.com" target="_blank" rel="noopener">
-        <span>Backed by</span>
-        <svg class="ycbadge__mark" viewBox="0 0 24 24" aria-hidden="true">
-          <rect width="24" height="24" rx="4.5" fill="#FF6533"/>
-          <path d="M11.1 13.42 7.5 6.7h2.04L11.66 11c.03.08.07.16.11.25l.08.18.05.12.05.12c.04-.1.09-.2.13-.31l.13-.3 2.16-4.36h1.9l-3.63 6.86v4.34h-1.54v-4.48z" fill="#fff"/>
-        </svg>
-        <strong>Y Combinator</strong>
-      </a>
       <a href="#capabilities">Capabilities</a>
       <a href="#coverage">Coverage</a>
       <a href="#platform">Platform</a>
@@ -103,6 +79,21 @@
   <main id="top">
     <!-- HERO -->
     <section class="hero">
+      <!-- Animated Ellis logo, anchored to the hero only -->
+      <div class="logo-anim" aria-hidden="true">
+        <div class="logo-anim__stack">
+          <img class="logo-anim__base" src="assets/ellis-logo.png" alt="" />
+          <img class="logo-anim__palm" src="assets/ellis-logo.png" alt="" />
+          <svg class="wind" viewBox="0 0 400 160" fill="none" preserveAspectRatio="none">
+            <path class="wind__line wind__line--1" d="M-20 52 C 70 30, 150 72, 240 46 S 370 38, 430 52"/>
+            <path class="wind__line wind__line--2" d="M-20 92 C 90 68, 170 110, 270 82 S 390 76, 430 86"/>
+            <path class="wind__line wind__line--3" d="M-20 26 C 60 10, 160 42, 250 22 S 380 16, 430 26"/>
+          </svg>
+          <span class="leaf leaf--1"></span>
+          <span class="leaf leaf--2"></span>
+          <span class="leaf leaf--3"></span>
+        </div>
+      </div>
       <div class="container hero__inner">
         <div class="hero__copy">
           <h1 class="hero__title" id="heroTitle">The shared workspace that automates <em>immigration</em></h1>
