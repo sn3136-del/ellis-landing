@@ -26,18 +26,23 @@
   <div class="orb orb--a" aria-hidden="true"></div>
   <div class="orb orb--b" aria-hidden="true"></div>
 
-  <!-- Ink passport background ornaments -->
-  <div class="passport-bg passport-bg--a" aria-hidden="true">
-    <svg viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect class="pp-stroke" x="8" y="8" width="284" height="404" rx="26" stroke="currentColor" stroke-width="3"/>
-      <rect class="pp-stroke pp-stroke--inner" x="26" y="26" width="248" height="368" rx="16" stroke="currentColor" stroke-width="1.5"/>
-      <text x="150" y="88" text-anchor="middle" font-family="Inter, sans-serif" font-size="21" font-weight="600" letter-spacing="9" fill="currentColor">PASSPORT</text>
-      <image href="assets/ellis-logo.png" x="86" y="124" width="128" height="128"/>
-      <line class="pp-stroke" x1="72" y1="300" x2="228" y2="300" stroke="currentColor" stroke-width="2"/>
-      <line class="pp-stroke" x1="92" y1="322" x2="208" y2="322" stroke="currentColor" stroke-width="2"/>
-      <text x="150" y="372" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" letter-spacing="4" fill="currentColor">E L L I S</text>
-    </svg>
+  <!-- Animated Ellis logo, background right -->
+  <div class="logo-anim" aria-hidden="true">
+    <div class="logo-anim__stack">
+      <img class="logo-anim__base" src="assets/ellis-logo.png" alt="" />
+      <img class="logo-anim__palm" src="assets/ellis-logo.png" alt="" />
+      <svg class="wind" viewBox="0 0 400 160" fill="none" preserveAspectRatio="none">
+        <path class="wind__line wind__line--1" d="M-20 52 C 70 30, 150 72, 240 46 S 370 38, 430 52"/>
+        <path class="wind__line wind__line--2" d="M-20 92 C 90 68, 170 110, 270 82 S 390 76, 430 86"/>
+        <path class="wind__line wind__line--3" d="M-20 26 C 60 10, 160 42, 250 22 S 380 16, 430 26"/>
+      </svg>
+      <span class="leaf leaf--1"></span>
+      <span class="leaf leaf--2"></span>
+      <span class="leaf leaf--3"></span>
+    </div>
   </div>
+
+  <!-- Ink passport background ornament -->
   <div class="passport-bg passport-bg--b" aria-hidden="true">
     <svg viewBox="0 0 300 420" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect class="pp-stroke" x="8" y="8" width="284" height="404" rx="26" stroke="currentColor" stroke-width="3"/>
@@ -109,38 +114,6 @@
             <a class="btn btn--ghost btn--lg js-magnet" href="#capabilities">Explore the platform</a>
           </div>
         </div>
-
-        <div class="hero__media reveal" data-delay="2">
-          <div class="hero__logoframe" id="tilt">
-            <svg class="wind" viewBox="0 0 400 310" fill="none" preserveAspectRatio="none" aria-hidden="true">
-              <path class="wind__line wind__line--1" d="M-20 64 C 70 36, 150 88, 240 58 S 370 46, 430 62"/>
-              <path class="wind__line wind__line--2" d="M-20 100 C 90 76, 170 122, 270 92 S 390 86, 430 96"/>
-              <path class="wind__line wind__line--3" d="M-20 40 C 60 22, 160 54, 250 34 S 380 26, 430 40"/>
-            </svg>
-            <img class="hero__logo-img" src="assets/ellis-logo.png" alt="Ellis logo, a letter E shaped like an island with a palm tree" />
-            <span class="leaf leaf--1"></span>
-            <span class="leaf leaf--2"></span>
-            <span class="leaf leaf--3"></span>
-          </div>
-          <div class="floatcard floatcard--a">
-            <div class="floatcard__label">Renewal due</div>
-            <div class="floatcard__value">47 days</div>
-            <div class="floatcard__meta">H-1B, flagged early</div>
-          </div>
-          <div class="floatcard floatcard--b">
-            <div class="floatcard__pulse"></div>
-            <div>
-              <div class="floatcard__label">Compliance monitor</div>
-              <div class="floatcard__value floatcard__value--sm">Worksite mismatch caught</div>
-            </div>
-          </div>
-          <div class="floatcard floatcard--c">
-            <div class="floatcard__avatar">HR</div>
-            <div class="floatcard__avatar floatcard__avatar--2">JL</div>
-            <div class="floatcard__avatar floatcard__avatar--3">+4</div>
-            <div class="floatcard__label floatcard__label--inline">working this case</div>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -155,12 +128,11 @@
     <!-- STRIP -->
     <section class="strip">
       <div class="container">
-        <p class="strip__lead reveal">
-          <span class="strip__star">&#10022;</span>
-          <span class="strip__outline">One workspace.</span>
-          <em class="strip__em">Every case.</em>
-          <span class="strip__star strip__star--right">&#10022;</span>
-        </p>
+        <div class="strip__lead reveal">
+          <span class="strip__rule" aria-hidden="true"></span>
+          <p class="strip__text">One workspace. <em class="strip__em">Every case.</em></p>
+          <span class="strip__rule" aria-hidden="true"></span>
+        </div>
       </div>
     </section>
 
@@ -253,7 +225,6 @@
         <div class="section__head reveal">
           <span class="kicker">Platform Intelligence</span>
           <h2 class="section__title">One agent across the entire immigration lifecycle.</h2>
-          <p class="section__lead">Explore the intelligence layer Ellis runs on every case, every day.</p>
         </div>
 
         <div class="grid-6">

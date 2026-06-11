@@ -86,21 +86,6 @@ const observer = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-// Subtle 3D tilt on the hero image
-const tilt = document.getElementById("tilt");
-if (tilt && !reduceMotion && finePointer) {
-  const damp = 11;
-  tilt.addEventListener("mousemove", (e) => {
-    const r = tilt.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    tilt.style.transform = `perspective(900px) rotateY(${x * damp}deg) rotateX(${-y * damp}deg)`;
-  });
-  tilt.addEventListener("mouseleave", () => {
-    tilt.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
-  });
-}
-
 // Magnetic buttons: nudge toward the cursor
 if (!reduceMotion && finePointer) {
   document.querySelectorAll(".js-magnet").forEach((btn) => {
